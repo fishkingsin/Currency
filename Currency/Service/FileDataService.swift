@@ -1,5 +1,5 @@
 //
-//  GenericDataSource.swift
+//  FileDataService.swift
 //  Currency
 //
 //  Created by James Kong on 24/10/2019.
@@ -7,6 +7,3 @@
 //
 
 import Foundation
-class GenericDataSource<T> : NSObject {
-    var data: DynamicValue<[T]> = DynamicValue([])
-}
