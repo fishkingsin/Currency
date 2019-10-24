@@ -9,6 +9,10 @@
 import Foundation
 import UIKit
 
+class GenericDataSource<T> : NSObject {
+    var data: DynamicValue<[T]> = DynamicValue([])
+}
+
 class CurrencyDataSource : GenericDataSource<CurrencyRate>, UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {

@@ -7,7 +7,7 @@ target 'Currency' do
   pod 'RxSwift', '~> 5'
   pod 'RxCocoa', '~> 5'
   pod 'RxAlamofire'
-
+  pod 'RxReachability'
   # Pods for Currency
 
   target 'CurrencyTests' do

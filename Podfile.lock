@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.9.0)
+  - ReachabilitySwift (4.3.1)
   - RxAlamofire (5.1.0):
     - RxAlamofire/Core (= 5.1.0)
   - RxAlamofire/Core (5.1.0):
@@ -8,6 +9,10 @@ PODS:
   - RxCocoa (5.0.0):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
+  - RxReachability (1.0.0):
+    - ReachabilitySwift (~> 4.3.1)
+    - RxCocoa (~> 5)
+    - RxSwift (~> 5)
   - RxRelay (5.0.0):
     - RxSwift (~> 5)
   - RxSwift (5.0.0)
@@ -15,23 +20,28 @@ PODS:
 DEPENDENCIES:
   - RxAlamofire
   - RxCocoa (~> 5)
+  - RxReachability
   - RxSwift (~> 5)
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - ReachabilitySwift
     - RxAlamofire
     - RxCocoa
+    - RxReachability
     - RxRelay
     - RxSwift
 
 SPEC CHECKSUMS:
   Alamofire: afc3e7c6db61476cb45cdd23fed06bad03bbc321
+  ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
   RxAlamofire: a2d7621de4c23a0c6e7b476b504acc32838ee341
   RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
+  RxReachability: 21d3e96f39bc166a21c357e923f47dec148ca97b
   RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
   RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
 
-PODFILE CHECKSUM: cf062bbe0ace003f3f076b3b5d8358cc3fe4f13b
+PODFILE CHECKSUM: 3b2bf4b3f62bbcb291f52d820a993eb1f5dfde49
 
 COCOAPODS: 1.8.3

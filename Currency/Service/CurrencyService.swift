@@ -26,6 +26,7 @@ final class CurrencyService : RequestHandler, CurrencyServiceProtocol {
         self.cancelFetchCurrencies()
         
         task = RequestService().loadData(urlString: endpoint, completion: self.networkResult(completion: completion))
+       
     }
     
     func cancelFetchCurrencies() {
