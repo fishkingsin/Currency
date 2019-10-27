@@ -1,0 +1,684 @@
+{
+    "USDLAK" : {
+      "timestamp" : 1571899627,
+      "rate" : 8835.0000529999998
+    },
+    "USDUZS" : {
+      "timestamp" : 1571899627,
+      "rate" : 9418.8060170000008
+    },
+    "AUDUSD" : {
+      "timestamp" : 1571899566,
+      "rate" : 0.68405499999999997
+    },
+    "USDISK" : {
+      "timestamp" : 1571899627,
+      "rate" : 124.570357
+    },
+    "USDKWD" : {
+      "timestamp" : 1571899627,
+      "rate" : 0.30353000000000002
+    },
+    "USDXAU" : {
+      "timestamp" : 1571899627,
+      "rate" : 0.00067000000000000002
+    },
+    "USDEGP" : {
+      "timestamp" : 1571899627,
+      "rate" : 16.179821
+    },
+    "USDSGD" : {
+      "timestamp" : 1571899627,
+      "rate" : 1.3619950000000001
+    },
+    "USDHRK" : {
+      "timestamp" : 1571899627,
+      "rate" : 6.6836120000000001
+    },
+    "USDHUF" : {
+      "timestamp" : 1571899627,
+      "rate" : 294.91024900000002
+    },
+    "USDBRL" : {
+      "timestamp" : 1571899627,
+      "rate" : 4.0343999999999998
+    },
+    "USDMXN" : {
+      "timestamp" : 1571899627,
+      "rate" : 19.124502
+    },
+    "USDSTD" : {
+      "timestamp" : 1571899627,
+      "rate" : 21560.790000000001
+    },
+    "USDILS" : {
+      "timestamp" : 1571899627,
+      "rate" : 3.5243039999999999
+    },
+    "USDRSD" : {
+      "timestamp" : 1571899627,
+      "rate" : 105.57982699999999
+    },
+    "USDSZL" : {
+      "timestamp" : 1571899627,
+      "rate" : 14.639867000000001
+    },
+    "USDXOF" : {
+      "timestamp" : 1571899627,
+      "rate" : 589.24027000000001
+    },
+    "USDSVC" : {
+      "timestamp" : 1571899627,
+      "rate" : 8.7313880000000008
+    },
+    "USDLVL" : {
+      "timestamp" : 1571899627,
+      "rate" : 0.60489000000000004
+    },
+    "USDINR" : {
+      "timestamp" : 1571899627,
+      "rate" : 70.914799000000002
+    },
+    "USDPGK" : {
+      "timestamp" : 1571899627,
+      "rate" : 3.3850440000000002
+    },
+    "USDKHR" : {
+      "timestamp" : 1571899627,
+      "rate" : 4060.999957
+    },
+    "USDCNY" : {
+      "timestamp" : 1571899627,
+      "rate" : 7.0686020000000003
+    },
+    "USDUGX" : {
+      "timestamp" : 1571899627,
+      "rate" : 3701.6776020000002
+    },
+    "USDUSD" : {
+      "timestamp" : 1571899627,
+      "rate" : 1
+    },
+    "USDKRW" : {
+      "timestamp" : 1571899627,
+      "rate" : 1172.3601980000001
+    },
+    "USDNPR" : {
+      "timestamp" : 1571899627,
+      "rate" : 113.28886
+    },
+    "USDSYP" : {
+      "timestamp" : 1571899627,
+      "rate" : 515.00014699999997
+    },
+    "USDCZK" : {
+      "timestamp" : 1571899627,
+      "rate" : 22.997015999999999
+    },
+    "USDIMP" : {
+      "timestamp" : 1571899627,
+      "rate" : 0.77402499999999996
+    },
+    "USDAUD" : {
+      "timestamp" : 1571899627,
+      "rate" : 1.4620200000000001
+    },
+    "USDMAD" : {
+      "timestamp" : 1571899627,
+      "rate" : 9.6038990000000002
+    },
+    "USDKMF" : {
+      "timestamp" : 1571899627,
+      "rate" : 442.29797000000002
+    },
+    "USDFJD" : {
+      "timestamp" : 1571899627,
+      "rate" : 2.1816040000000001
+    },
+    "GBPUSD" : {
+      "timestamp" : 1571899627,
+      "rate" : 1.291806
+    },
+    "USDBND" : {
+      "timestamp" : 1571899627,
+      "rate" : 1.3602190000000001
+    },
+    "USDCHF" : {
+      "timestamp" : 1571899627,
+      "rate" : 0.99067499999999997
+    },
+    "USDVEF" : {
+      "timestamp" : 1571899627,
+      "rate" : 9.9874949999999991
+    },
+    "USDCOP" : {
+      "timestamp" : 1571899627,
+      "rate" : 3423.2970999999998
+    },
+    "USDZAR" : {
+      "timestamp" : 1571899627,
+      "rate" : 14.648600999999999
+    },
+    "USDKYD" : {
+      "timestamp" : 1571899627,
+      "rate" : 0.83154799999999995
+    },
+    "USDAMD" : {
+      "timestamp" : 1571899627,
+      "rate" : 475.17797000000002
+    },
+    "USDTWD" : {
+      "timestamp" : 1571899627,
+      "rate" : 30.573975000000001
+    },
+    "NZDUSD" : {
+      "timestamp" : 1571899627,
+      "rate" : 0.64031099999999996
+    },
+    "USDLSL" : {
+      "timestamp" : 1571899627,
+      "rate" : 14.639915999999999
+    },
+    "USDMZN" : {
+      "timestamp" : 1571899627,
+      "rate" : 62.444971000000002
+    },
+    "USDDKK" : {
+      "timestamp" : 1571899627,
+      "rate" : 6.7098599999999999
+    },
+    "USDLRD" : {
+      "timestamp" : 1571899627,
+      "rate" : 211.49800400000001
+    },
+    "USDRON" : {
+      "timestamp" : 1571899627,
+      "rate" : 4.270397
+    },
+    "USDBSD" : {
+      "timestamp" : 1571899627,
+      "rate" : 0.99773199999999995
+    },
+    "USDAED" : {
+      "timestamp" : 1571899627,
+      "rate" : 3.6728299999999998
+    },
+    "USDNIO" : {
+      "timestamp" : 1571899627,
+      "rate" : 33.659844999999997
+    },
+    "USDDZD" : {
+      "timestamp" : 1571899627,
+      "rate" : 119.497068
+    },
+    "USDMKD" : {
+      "timestamp" : 1571899627,
+      "rate" : 55.348945000000001
+    },
+    "USDMYR" : {
+      "timestamp" : 1571899627,
+      "rate" : 4.1859820000000001
+    },
+    "USDYER" : {
+      "timestamp" : 1571899627,
+      "rate" : 250.29759799999999
+    },
+    "USDNOK" : {
+      "timestamp" : 1571899627,
+      "rate" : 9.1245799999999999
+    },
+    "USDLKR" : {
+      "timestamp" : 1571899627,
+      "rate" : 181.09241
+    },
+    "USDTOP" : {
+      "timestamp" : 1571899627,
+      "rate" : 2.3127
+    },
+    "USDGNF" : {
+      "timestamp" : 1571899627,
+      "rate" : 9237.1669569999995
+    },
+    "USDMGA" : {
+      "timestamp" : 1571899627,
+      "rate" : 3640.0001219999999
+    },
+    "USDXDR" : {
+      "timestamp" : 1571899627,
+      "rate" : 0.72595600000000005
+    },
+    "USDANG" : {
+      "timestamp" : 1571899627,
+      "rate" : 1.7510540000000001
+    },
+    "USDXCD" : {
+      "timestamp" : 1571899627,
+      "rate" : 2.70255
+    },
+    "USDBYR" : {
+      "timestamp" : 1571899627,
+      "rate" : 19600
+    },
+    "USDMDL" : {
+      "timestamp" : 1571899627,
+      "rate" : 17.350940000000001
+    },
+    "USDCLP" : {
+      "timestamp" : 1571899627,
+      "rate" : 726.50124600000004
+    },
+    "USDTTD" : {
+      "timestamp" : 1571899627,
+      "rate" : 6.7521839999999997
+    },
+    "USDGMD" : {
+      "timestamp" : 1571899627,
+      "rate" : 50.829464000000002
+    },
+    "USDPEN" : {
+      "timestamp" : 1571899627,
+      "rate" : 3.3459850000000002
+    },
+    "USDVND" : {
+      "timestamp" : 1571899627,
+      "rate" : 23208.5
+    },
+    "USDZMK" : {
+      "timestamp" : 1571899627,
+      "rate" : 9001.2032029999991
+    },
+    "USDERN" : {
+      "timestamp" : 1571899627,
+      "rate" : 15.000097
+    },
+    "USDKES" : {
+      "timestamp" : 1571899627,
+      "rate" : 103.099812
+    },
+    "USDLBP" : {
+      "timestamp" : 1571899627,
+      "rate" : 1513.000027
+    },
+    "USDSLL" : {
+      "timestamp" : 1571899627,
+      "rate" : 9500.0002679999998
+    },
+    "USDXAF" : {
+      "timestamp" : 1571899627,
+      "rate" : 589.24027000000001
+    },
+    "USDBIF" : {
+      "timestamp" : 1571899627,
+      "rate" : 1845.143
+    },
+    "USDZMW" : {
+      "timestamp" : 1571899627,
+      "rate" : 13.195266
+    },
+    "USDJMD" : {
+      "timestamp" : 1571899627,
+      "rate" : 137.25077999999999
+    },
+    "USDMVR" : {
+      "timestamp" : 1571899627,
+      "rate" : 15.391965000000001
+    },
+    "EURGBP" : {
+      "timestamp" : 1571899566,
+      "rate" : 0.86180400000000001
+    },
+    "USDBOB" : {
+      "timestamp" : 1571899627,
+      "rate" : 6.8995030000000002
+    },
+    "USDSOS" : {
+      "timestamp" : 1571899627,
+      "rate" : 580.99983599999996
+    },
+    "USDMRO" : {
+      "timestamp" : 1571899627,
+      "rate" : 357.00034599999998
+    },
+    "USDBHD" : {
+      "timestamp" : 1571899627,
+      "rate" : 0.37699899999999997
+    },
+    "USDHKD" : {
+      "timestamp" : 1571899627,
+      "rate" : 7.8386500000000003
+    },
+    "USDNAD" : {
+      "timestamp" : 1571899627,
+      "rate" : 14.639827
+    },
+    "USDPYG" : {
+      "timestamp" : 1571899627,
+      "rate" : 6444.609101
+    },
+    "USDCAD" : {
+      "timestamp" : 1571899627,
+      "rate" : 1.30785
+    },
+    "USDKZT" : {
+      "timestamp" : 1571899627,
+      "rate" : 388.65458000000001
+    },
+    "USDIRR" : {
+      "timestamp" : 1571899627,
+      "rate" : 42105.000059999998
+    },
+    "USDWST" : {
+      "timestamp" : 1571899627,
+      "rate" : 2.6619419999999998
+    },
+    "USDHTG" : {
+      "timestamp" : 1571899627,
+      "rate" : 95.85575
+    },
+    "USDIQD" : {
+      "timestamp" : 1571899627,
+      "rate" : 1189.5
+    },
+    "USDDOP" : {
+      "timestamp" : 1571899627,
+      "rate" : 52.651530000000001
+    },
+    "USDJEP" : {
+      "timestamp" : 1571899627,
+      "rate" : 0.77402499999999996
+    },
+    "USDLYD" : {
+      "timestamp" : 1571899627,
+      "rate" : 1.3983699999999999
+    },
+    "USDBGN" : {
+      "timestamp" : 1571899627,
+      "rate" : 1.7563960000000001
+    },
+    "USDBMD" : {
+      "timestamp" : 1571899627,
+      "rate" : 1
+    },
+    "USDPHP" : {
+      "timestamp" : 1571899627,
+      "rate" : 51.200496999999999
+    },
+    "USDBTN" : {
+      "timestamp" : 1571899627,
+      "rate" : 70.805629999999994
+    },
+    "USDBZD" : {
+      "timestamp" : 1571899627,
+      "rate" : 2.0111840000000001
+    },
+    "USDAFN" : {
+      "timestamp" : 1571899627,
+      "rate" : 78.394040000000004
+    },
+    "USDTZS" : {
+      "timestamp" : 1571899627,
+      "rate" : 2297.6073459999998
+    },
+    "USDXAG" : {
+      "timestamp" : 1571899627,
+      "rate" : 0.056987999999999997
+    },
+    "USDETB" : {
+      "timestamp" : 1571899627,
+      "rate" : 29.750077000000001
+    },
+    "USDGBP" : {
+      "timestamp" : 1571899627,
+      "rate" : 0.77410999999999996
+    },
+    "USDOMR" : {
+      "timestamp" : 1571899627,
+      "rate" : 0.38500800000000002
+    },
+    "USDTHB" : {
+      "timestamp" : 1571899627,
+      "rate" : 30.273233999999999
+    },
+    "USDCVE" : {
+      "timestamp" : 1571899627,
+      "rate" : 99.050060000000002
+    },
+    "USDSHP" : {
+      "timestamp" : 1571899627,
+      "rate" : 1.3209040000000001
+    },
+    "USDSDG" : {
+      "timestamp" : 1571899627,
+      "rate" : 45.011206000000001
+    },
+    "USDBYN" : {
+      "timestamp" : 1571899627,
+      "rate" : 2.0394800000000002
+    },
+    "USDKGS" : {
+      "timestamp" : 1571899627,
+      "rate" : 69.823016999999993
+    },
+    "USDTND" : {
+      "timestamp" : 1571899627,
+      "rate" : 2.8337500000000002
+    },
+    "USDSAR" : {
+      "timestamp" : 1571899627,
+      "rate" : 3.7505500000000001
+    },
+    "USDJOD" : {
+      "timestamp" : 1571899627,
+      "rate" : 0.70902100000000001
+    },
+    "USDXPF" : {
+      "timestamp" : 1571899627,
+      "rate" : 107.13018
+    },
+    "USDCUC" : {
+      "timestamp" : 1571899627,
+      "rate" : 1
+    },
+    "USDPLN" : {
+      "timestamp" : 1571899627,
+      "rate" : 3.8394400000000002
+    },
+    "USDUYU" : {
+      "timestamp" : 1571899627,
+      "rate" : 37.30097
+    },
+    "USDTRY" : {
+      "timestamp" : 1571899627,
+      "rate" : 5.7529750000000002
+    },
+    "USDBAM" : {
+      "timestamp" : 1571899627,
+      "rate" : 1.7569049999999999
+    },
+    "USDHNL" : {
+      "timestamp" : 1571899627,
+      "rate" : 24.749680999999999
+    },
+    "USDUAH" : {
+      "timestamp" : 1571899627,
+      "rate" : 24.927889
+    },
+    "USDGGP" : {
+      "timestamp" : 1571899627,
+      "rate" : 0.77402499999999996
+    },
+    "USDMMK" : {
+      "timestamp" : 1571899627,
+      "rate" : 1531.5527959999999
+    },
+    "USDCDF" : {
+      "timestamp" : 1571899627,
+      "rate" : 1665.0002830000001
+    },
+    "USDBDT" : {
+      "timestamp" : 1571899627,
+      "rate" : 84.504840000000002
+    },
+    "USDTJS" : {
+      "timestamp" : 1571899627,
+      "rate" : 9.6682159999999993
+    },
+    "USDPKR" : {
+      "timestamp" : 1571899627,
+      "rate" : 156.058739
+    },
+    "USDVUV" : {
+      "timestamp" : 1571899627,
+      "rate" : 116.991088
+    },
+    "USDGYD" : {
+      "timestamp" : 1571899627,
+      "rate" : 208.14301
+    },
+    "USDBWP" : {
+      "timestamp" : 1571899627,
+      "rate" : 10.827648
+    },
+    "USDTMT" : {
+      "timestamp" : 1571899627,
+      "rate" : 3.5
+    },
+    "USDSRD" : {
+      "timestamp" : 1571899627,
+      "rate" : 7.457999
+    },
+    "USDDJF" : {
+      "timestamp" : 1571899627,
+      "rate" : 177.719697
+    },
+    "USDBBD" : {
+      "timestamp" : 1571899627,
+      "rate" : 2.0145970000000002
+    },
+    "USDGEL" : {
+      "timestamp" : 1571899627,
+      "rate" : 2.9549720000000002
+    },
+    "USDMOP" : {
+      "timestamp" : 1571899627,
+      "rate" : 8.0594669999999997
+    },
+    "USDFKP" : {
+      "timestamp" : 1571899627,
+      "rate" : 0.81288000000000005
+    },
+    "USDARS" : {
+      "timestamp" : 1571899627,
+      "rate" : 58.917696999999997
+    },
+    "USDGHS" : {
+      "timestamp" : 1571899627,
+      "rate" : 5.4677179999999996
+    },
+    "USDCRC" : {
+      "timestamp" : 1571899627,
+      "rate" : 582.38902599999994
+    },
+    "USDLTL" : {
+      "timestamp" : 1571899627,
+      "rate" : 2.9527399999999999
+    },
+    "USDMUR" : {
+      "timestamp" : 1571899627,
+      "rate" : 36.334898000000003
+    },
+    "USDRWF" : {
+      "timestamp" : 1571899627,
+      "rate" : 926
+    },
+    "USDJPY" : {
+      "timestamp" : 1571899627,
+      "rate" : 108.617025
+    },
+    "USDMNT" : {
+      "timestamp" : 1571899627,
+      "rate" : 2688.5431039999999
+    },
+    "USDAWG" : {
+      "timestamp" : 1571899627,
+      "rate" : 1.8
+    },
+    "USDMWK" : {
+      "timestamp" : 1571899627,
+      "rate" : 732.98030100000005
+    },
+    "USDKPW" : {
+      "timestamp" : 1571899627,
+      "rate" : 900.07181300000002
+    },
+    "USDPAB" : {
+      "timestamp" : 1571899627,
+      "rate" : 0.99782199999999999
+    },
+    "USDGTQ" : {
+      "timestamp" : 1571899627,
+      "rate" : 7.7550359999999996
+    },
+    "USDNGN" : {
+      "timestamp" : 1571899627,
+      "rate" : 361.49750899999998
+    },
+    "USDCUP" : {
+      "timestamp" : 1571899627,
+      "rate" : 26.5
+    },
+    "USDNZD" : {
+      "timestamp" : 1571899627,
+      "rate" : 1.5617399999999999
+    },
+    "USDSCR" : {
+      "timestamp" : 1571899627,
+      "rate" : 13.956517
+    },
+    "USDAZN" : {
+      "timestamp" : 1571899627,
+      "rate" : 1.698534
+    },
+    "USDSBD" : {
+      "timestamp" : 1571899627,
+      "rate" : 8.2918450000000004
+    },
+    "USDIDR" : {
+      "timestamp" : 1571899627,
+      "rate" : 14040
+    },
+    "USDRUB" : {
+      "timestamp" : 1571899627,
+      "rate" : 63.912500000000001
+    },
+    "USDAOA" : {
+      "timestamp" : 1571899627,
+      "rate" : 455.21101199999998
+    },
+    "EURUSD" : {
+      "timestamp" : 1571899566,
+      "rate" : 1.1134500000000001
+    },
+    "USDGIP" : {
+      "timestamp" : 1571899627,
+      "rate" : 0.81288000000000005
+    },
+    "USDALL" : {
+      "timestamp" : 1571899627,
+      "rate" : 110.65061300000001
+    },
+    "USDSEK" : {
+      "timestamp" : 1571899627,
+      "rate" : 9.6286699999999996
+    },
+    "USDEUR" : {
+      "timestamp" : 1571899627,
+      "rate" : 0.89815999999999996
+    },
+    "USDQAR" : {
+      "timestamp" : 1571899627,
+      "rate" : 3.641
+    }
+
+}
+

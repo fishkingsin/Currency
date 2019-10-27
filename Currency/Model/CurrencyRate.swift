@@ -7,8 +7,29 @@
 //
 
 import Foundation
-struct CurrencyRate {
-
+struct CurrencyRate:Codable {
+    
     let currencyIso : String
     let rate : Double
+    let change: Double
+    let sellPrice: Double
+    let buyPrice: Double
+    
+    enum CurrencyRate: String, CodingKey {
+        case currencyIso
+        case rate
+        case change
+        case sellPrice
+        case buyPrice
+    }
+}
+
+
+// MARK: Convenience initializers
+
+extension CurrencyRate {
+    init?(data: Data) {
+        guard case me = try? JSONDecoder().decode(CurrencyRate.self, from: data) else { return nil }
+        self = me
+    }
 }

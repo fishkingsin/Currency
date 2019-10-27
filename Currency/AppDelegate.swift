@@ -7,15 +7,23 @@
 //
 
 import UIKit
-
+import Reachability
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    var reachability: Reachability?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        reachability = Reachability()
+        try? reachability?.startNotifier()
         return true
+    }
+    
+    
+    func applicationWillTerminate(_ application: UIApplication) {
+        reachability?.stopNotifier()
     }
 
     // MARK: UISceneSession Lifecycle

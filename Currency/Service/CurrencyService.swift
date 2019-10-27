@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import RxSwift
 
 protocol CurrencyServiceProtocol : class {
     func fetchConverter(_ completion: @escaping ((Result<Converter, ErrorResult>) -> Void))
@@ -19,6 +19,7 @@ final class CurrencyService : RequestHandler, CurrencyServiceProtocol {
     
     let endpoint = "https://www.freeforexapi.com/api/live"
     var task : URLSessionTask?
+
     
     func fetchConverter(_ completion: @escaping ((Result<Converter, ErrorResult>) -> Void)) {
         
@@ -26,6 +27,7 @@ final class CurrencyService : RequestHandler, CurrencyServiceProtocol {
         self.cancelFetchCurrencies()
         
         task = RequestService().loadData(urlString: endpoint, completion: self.networkResult(completion: completion))
+
        
     }
     

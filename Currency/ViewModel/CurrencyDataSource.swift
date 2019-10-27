@@ -12,7 +12,7 @@ import UIKit
 class GenericDataSource<T> : NSObject {
     var data: DynamicValue<[T]> = DynamicValue([])
 }
-
+    
 class CurrencyDataSource : GenericDataSource<CurrencyRate>, UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -22,7 +22,13 @@ class CurrencyDataSource : GenericDataSource<CurrencyRate>, UITableViewDataSourc
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.value.count
     }
-
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 60;
+    }
+    
+   
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "CurrencyCell", for: indexPath) as! CurrencyCell

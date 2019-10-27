@@ -8,10 +8,13 @@ target 'Currency' do
   pod 'RxCocoa', '~> 5'
   pod 'RxAlamofire'
   pod 'RxReachability'
+  pod 'SwiftyJSON'
   # Pods for Currency
 
   target 'CurrencyTests' do
     inherit! :search_paths
+    pod 'RxTest'
+    pod 'RxBlocking'
     # Pods for testing
   end
 

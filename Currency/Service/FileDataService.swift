@@ -19,7 +19,6 @@ final class FileDataService : CurrencyServiceProtocol {
             completion(Result.failure(ErrorResult.custom(string: "No file or data")))
             return
         }
-        
         ParserHelper.parse(data: data, completion: completion)
     }
 }
