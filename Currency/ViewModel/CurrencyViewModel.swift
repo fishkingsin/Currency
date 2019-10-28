@@ -17,7 +17,6 @@ import SwiftyJSON
 struct CurrencyViewModel {
 
     var disposeBag: DisposeBag = DisposeBag()
-    weak var dataSource : GenericDataSource<CurrencyRate>?
 
     
     public enum HomeError {
@@ -32,36 +31,27 @@ struct CurrencyViewModel {
     
     private let disposable = DisposeBag()
     
-    init(service: CurrencyServiceProtocol = FileDataService.shared, dataSource : GenericDataSource<CurrencyRate>?) {
-        self.dataSource = dataSource
+    init() {
+        
 //        self.service = service
     }
     public func requestData(){
         
         self.loading.onNext(true)
-        APIManager.requestData(url: "", method: .get, parameters: nil, completion: { (result) in
-            self.loading.onNext(false)
-            switch result {
-            case .success(let returnJson) :
-                 do {
-                    
-//                    if let currencyRate = try CurrencyRate(data: returnJson["supportedPairs"].rawData()) {
-//                        self.currencyRate.onNext(currencyRate)
-//                    }
-                 } catch _ {
-                    self.error.onNext(.errorMessage("failed to parse"))
-                }
-            case .failure(let failure) :
-                switch failure {
-                case .connectionError:
-                    self.error.onNext(.internetError("Check your Internet connection."))
-                case .authorizationError(let errorJson):
-                    self.error.onNext(.serverMessage(errorJson["message"].stringValue))
-                default:
-                    self.error.onNext(.serverMessage("Unknown Error"))
-                }
-            }
-        })
+        RxAlamofire.requestJSON(.get, "https://www.freeforexapi.com/api/live")
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { (r, data) in
+                let dict = data as? [String: AnyObject]
+                let pairs = dict?["supportedPairs"] as! Array<String>
+                let currencyRates = pairs.compactMap {return CurrencyRate(currencyIso: $0, rate: 0, change: 0, sellPrice: 0, buyPrice: 0)}
+                self.currencyRates.onNext(currencyRates)
+            }, onError: { (err) in
+                self.error.onNext(.internetError("unable to fetch data"))
+            }, onCompleted: {
+                self.loading.onNext(false)
+            }) {
+                print("dispose")
+        }.disposed(by: disposeBag)
         
     }
     
@@ -74,7 +64,12 @@ struct CurrencyViewModel {
                 
                 let dict = data as? [String: AnyObject]
                 let pairs = dict?["supportedPairs"] as! Array<String>
-                let collections = pairs.compactMap{return RxAlamofire.requestJSON(.get, "https://www.freeforexapi.com/api/live?pairs=\($0)")}
+                let currencyRates = pairs.compactMap {return CurrencyRate(currencyIso: $0, rate: 0, change: 0, sellPrice: 0, buyPrice: 0)}
+                self.currencyRates.onNext(currencyRates)
+                let collections = pairs.compactMap { (pair) -> Observable<(HTTPURLResponse, Any)> in
+                    print("pair \(pair)")
+                    return RxAlamofire.requestJSON(.get, "https://www.freeforexapi.com/api/live?pairs=\(pair)")
+                }
 //                var collections = Array<Observable<(HTTPURLResponse, Any)>>()
 //                for pair in pairs {
 //                    let observable:Observable = RxAlamofire.requestJSON(.get, "https://www.freeforexapi.com/api/live?pairs=\(pair)")
@@ -83,12 +78,18 @@ struct CurrencyViewModel {
                 return Observable.merge(collections)
                 
                 
-        }.map({ (r, json) in
+        }.map({ (r, json) -> Any in
             
-            if let returnJson = json as? [String: AnyObject] {
-                let currenyRate= returnJson["rates"].flatMap{return CurrencyRate(data: try! $0.rawData())}
-                print(currenyRate)
+            if let dic = json as? [String: AnyObject]{
+                print("dic \(dic)")
+                let rates = dic["rates"] as? [String: AnyObject]
+                if let keys = rates?.keys {
+                    let key = keys.first
+                    let currencyRate = CurrencyRate(currencyIso: key ?? "" , rate: 0, change: 0, sellPrice: 0, buyPrice: 0)
+                    return currencyRate
+                }
             }
+            return NSError.init(domain: "com.something", code: 0, userInfo: nil)
                 
         })
         .enumerated()

@@ -39,7 +39,7 @@ class CurrencyCell: UITableViewCell {
     
     private let currencyIsoLabel : UILabel = {
         let lbl = UILabel()
-        lbl.textColor = .black
+        lbl.textColor = UIColor(named: "FontColor")
         lbl.font = UIFont.boldSystemFont(ofSize: 16)
         lbl.textAlignment = .left
         return lbl
@@ -48,7 +48,7 @@ class CurrencyCell: UITableViewCell {
     
     private let brandLabel : UILabel = {
         let lbl = UILabel()
-        lbl.textColor = .black
+        lbl.textColor = UIColor(named: "FontColor")
         lbl.font = UIFont.systemFont(ofSize: 16)
         lbl.textAlignment = .left
         return lbl
@@ -57,7 +57,7 @@ class CurrencyCell: UITableViewCell {
     
     private let changeLabel : UILabel = {
         let lbl = UILabel()
-        lbl.textColor = .black
+        lbl.textColor = UIColor(named: "FontColor")
         lbl.font = UIFont.systemFont(ofSize: 16)
         lbl.textAlignment = .left
         return lbl
@@ -65,7 +65,7 @@ class CurrencyCell: UITableViewCell {
     
     private let sellPriceLabel : UILabel = {
         let lbl = UILabel()
-        lbl.textColor = .black
+        lbl.textColor = UIColor(named: "FontColor")
         lbl.font = UIFont.systemFont(ofSize: 16)
         lbl.textAlignment = .left
         return lbl
@@ -73,7 +73,7 @@ class CurrencyCell: UITableViewCell {
     
     private let buyPriceLabel : UILabel = {
         let lbl = UILabel()
-        lbl.textColor = .black
+        lbl.textColor = UIColor(named: "FontColor")
         lbl.font = UIFont.systemFont(ofSize: 16)
         lbl.textAlignment = .left
         return lbl
@@ -81,6 +81,7 @@ class CurrencyCell: UITableViewCell {
     
         override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
             super.init(style: style, reuseIdentifier: reuseIdentifier)
+            self.backgroundColor = UIColor.clear
             addSubview(currencyIsoLabel)
             addSubview(brandLabel)
             addSubview(changeLabel)

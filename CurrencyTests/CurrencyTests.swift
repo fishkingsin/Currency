@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import OCMock
+
 import Reachability
 @testable import Currency
 
@@ -57,7 +57,9 @@ class CurrencyTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Download from forex")
         
         viewModel.requestDatas(params: ["USDHKD", "USDJPY"])
-        
+        viewModel.currencyRates.subscribe { (currencyRates) in
+            expectation.fulfill()
+        }
         wait(for: [expectation], timeout: 10.0)
     }
     
