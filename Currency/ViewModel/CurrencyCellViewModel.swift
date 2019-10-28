@@ -31,7 +31,7 @@ class CurrencyCellViewModel {
         RxAlamofire.requestJSON(.get, stringURL)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { (r, json) in
-                json
+                print(json)
             }, onError: { (error) in
                 
             }, onCompleted: {

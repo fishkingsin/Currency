@@ -15,7 +15,7 @@ struct CurrencyRate:Codable {
     let sellPrice: Double
     let buyPrice: Double
     
-    enum CurrencyRate: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case currencyIso
         case rate
         case change
@@ -29,7 +29,7 @@ struct CurrencyRate:Codable {
 
 extension CurrencyRate {
     init?(data: Data) {
-        guard case me = try? JSONDecoder().decode(CurrencyRate.self, from: data) else { return nil }
+        guard let me = try? JSONDecoder().decode(CurrencyRate.self, from: data) else { return nil }
         self = me
     }
 }

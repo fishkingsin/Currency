@@ -38,7 +38,7 @@ class CurrencyViewController: UIViewController, UITableViewDelegate {
             self?.tableView.reloadData()
         }
         
-        self.viewModel.fetchCurrencies()
+        self.viewModel.requestData()
     }
     
     override func didReceiveMemoryWarning() {

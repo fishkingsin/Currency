@@ -7,13 +7,22 @@
 //
 
 import XCTest
+import OCMock
+import Reachability
 @testable import Currency
+
 
 class CurrencyTests: XCTestCase {
 
-    var currencyCellViewModel: CurrencyCellViewModel
+    var dataSource: CurrencyDataSource!
+    var viewModel: CurrencyViewModel!
+
+    
     override func setUp() {
-        currencyCellViewModel = CurrencyCellViewModel()
+        super.setUp()
+        dataSource = CurrencyDataSource()
+               
+        viewModel = CurrencyViewModel(dataSource: dataSource)
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
@@ -33,7 +42,25 @@ class CurrencyTests: XCTestCase {
         }
     }
     
-    func testRequestService () {
-        currencyCellViewModel.requestData()
+    func testAPIManagerGetData () {
+        let expectation = XCTestExpectation(description: "Download from forex")
+        
+        APIManager.requestData(url:"", method: .get, parameters: nil, completion: { (result) in
+            XCTAssertNotNil(result, "No data was downloaded.")
+            expectation.fulfill()
+        })
+        wait(for: [expectation], timeout: 10.0)
     }
+    
+    
+    func testAPIManagerGetObjects () {
+        let expectation = XCTestExpectation(description: "Download from forex")
+        
+        viewModel.requestDatas(params: ["USDHKD", "USDJPY"])
+        
+        wait(for: [expectation], timeout: 10.0)
+    }
+    
+    
+    
 }

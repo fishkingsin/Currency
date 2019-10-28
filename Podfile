@@ -4,17 +4,19 @@
 target 'Currency' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-  pod 'RxSwift', '~> 5'
-  pod 'RxCocoa', '~> 5'
+  pod 'RxSwift'
+  pod 'RxCocoa'
   pod 'RxAlamofire'
   pod 'RxReachability'
   pod 'SwiftyJSON'
+  pod 'ObjectMapper', '~> 3.4'
   # Pods for Currency
 
   target 'CurrencyTests' do
     inherit! :search_paths
     pod 'RxTest'
     pod 'RxBlocking'
+    pod 'OCMock'
     # Pods for testing
   end
 

@@ -1,5 +1,7 @@
 PODS:
   - Alamofire (4.9.0)
+  - ObjectMapper (3.5.1)
+  - OCMock (3.4.3)
   - ReachabilitySwift (4.3.1)
   - RxAlamofire (5.1.0):
     - RxAlamofire/Core (= 5.1.0)
@@ -23,17 +25,21 @@ PODS:
   - SwiftyJSON (5.0.0)
 
 DEPENDENCIES:
+  - ObjectMapper (~> 3.4)
+  - OCMock
   - RxAlamofire
   - RxBlocking
-  - RxCocoa (~> 5)
+  - RxCocoa
   - RxReachability
-  - RxSwift (~> 5)
+  - RxSwift
   - RxTest
   - SwiftyJSON
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - ObjectMapper
+    - OCMock
     - ReachabilitySwift
     - RxAlamofire
     - RxBlocking
@@ -46,6 +52,8 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: afc3e7c6db61476cb45cdd23fed06bad03bbc321
+  ObjectMapper: 70187b8941977c62ccfb423caf6b50be405cabf0
+  OCMock: 43565190abc78977ad44a61c0d20d7f0784d35ab
   ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
   RxAlamofire: a2d7621de4c23a0c6e7b476b504acc32838ee341
   RxBlocking: c67185d26498ea3cbe3e121917c3c16739e43123
@@ -56,6 +64,6 @@ SPEC CHECKSUMS:
   RxTest: 4349afe98f564e0a9bc19063368904622d17d49a
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: cd7d0da1767bc4a7ae93b7516a83c83f551b8625
+PODFILE CHECKSUM: 50f5032dc3803cf807f87abb04f6c3b314ad2594
 
-COCOAPODS: 1.8.3
+COCOAPODS: 1.8.4
