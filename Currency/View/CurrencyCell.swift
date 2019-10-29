@@ -69,7 +69,7 @@ class CurrencyCell: UITableViewCell {
     
     private let brandLabel : UILabel = {
         let lbl = UILabel()
-        lbl.textColor = UIColor.gray
+        lbl.textColor = UIColor(named: "SubFontColor")
         lbl.font = UIFont.systemFont(ofSize: 12)
         lbl.textAlignment = .left
         return lbl

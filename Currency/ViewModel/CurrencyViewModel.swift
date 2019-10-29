@@ -27,15 +27,20 @@ struct CurrencyViewModel {
     }
     public let currencyRatesPublishSubject : PublishSubject<[CurrencyRate]> = PublishSubject()
     public let loading: PublishSubject<Bool> = PublishSubject()
+    public let interval: PublishSubject<Int> = PublishSubject()
     public let error : PublishSubject<HomeError> = PublishSubject()
     
     private let disposable = DisposeBag()
     
     
-    lazy var currencyRates : [CurrencyRate] = {
-        let currencyRates = Array<CurrencyRate>()
+    lazy var currencyRates : [[String: CurrencyRate]] = {
+        let currencyRates = [[String: CurrencyRate]]()
         return currencyRates
     }()
+    
+    init () {
+        self.resumeInterval()
+    }
     
     public func requestData(){
         
@@ -43,10 +48,9 @@ struct CurrencyViewModel {
         RxAlamofire.requestJSON(.get, "https://www.freeforexapi.com/api/live")
             .observeOn(MainScheduler.instance)
             .subscribe(
-                onNext: { (r, data) in
+                onNext: {(r, data) in
                     let dict = data as? [String: AnyObject]
                     let pairs = dict?["supportedPairs"] as! Array<String>
-                    
                     self.requestDatas(params: pairs)
                     let currencyRates = pairs.compactMap {return CurrencyRate(currencyIso: $0, rate: 0, change: 0, sellPrice: 0, buyPrice: 0)}
                     self.currencyRatesPublishSubject.onNext(currencyRates)
@@ -83,9 +87,9 @@ struct CurrencyViewModel {
                 })
                 self.currencyRatesPublishSubject.onNext(currencyRates)
             }, onError: { (error) in
-                print(error)
+                self.error.onNext(.internetError("unable to fetch data"))
             }, onCompleted: {
-                print("complete")
+                self.loading.onNext(false)
             }) {
                 print("dispose")
             }
@@ -94,5 +98,15 @@ struct CurrencyViewModel {
     
     public mutating func cancelRequest () {
         self.disposeBag = DisposeBag()
+    }
+    
+    public func resumeInterval() {
+        let scheduler = SerialDispatchQueueScheduler(qos: .default)
+        Observable<Int>.interval(.seconds(10), scheduler: scheduler)
+        .debug("interval")
+            .subscribe({ (event) in
+                print(event)
+            })
+        .disposed(by: disposeBag)
     }
 }

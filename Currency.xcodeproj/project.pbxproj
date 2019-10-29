@@ -57,6 +57,8 @@
 		E30F6FB023675D8F00844681 /* Header.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Header.xib; sourceTree = "<group>"; };
 		E30F6FB223675E1400844681 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		E34E65C72361583500AECF26 /* sample.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sample.json; sourceTree = "<group>"; };
+		E3B5BF1223680F7F00012861 /* font2.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = font2.ttf; path = "../../../../Downloads/CodingTestB-Wireframes/dist/font2.ttf"; sourceTree = "<group>"; };
+		E3B5BF1323680F7F00012861 /* font.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = font.ttf; path = "../../../../Downloads/CodingTestB-Wireframes/dist/font.ttf"; sourceTree = "<group>"; };
 		E3C9EA622360C2460009B7EA /* Currency.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Currency.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3C9EA652360C2460009B7EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3C9EA6B2360C2470009B7EA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -157,6 +159,8 @@
 			children = (
 				E3C9EA652360C2460009B7EA /* AppDelegate.swift */,
 				E3C9EA6B2360C2470009B7EA /* Assets.xcassets */,
+				E3B5BF1323680F7F00012861 /* font.ttf */,
+				E3B5BF1223680F7F00012861 /* font2.ttf */,
 				E3C9EA732360C2470009B7EA /* Info.plist */,
 				E3C9EB00236142DA0009B7EA /* LaunchScreen.storyboard */,
 				E3C9EABE236140A90009B7EA /* Main.storyboard */,

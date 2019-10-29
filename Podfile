@@ -10,6 +10,7 @@ target 'Currency' do
   pod 'RxReachability'
   pod 'SwiftyJSON'
   pod 'ObjectMapper', '~> 3.4'
+  pod 'RxCoreData'
   # Pods for Currency
 
   target 'CurrencyTests' do

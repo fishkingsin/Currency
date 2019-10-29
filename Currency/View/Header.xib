@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,10 +13,58 @@
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Symbol" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K2a-kq-yQZ">
+                    <rect key="frame" x="20" y="31.5" width="90.5" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" name="SubFontColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Buy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ah-8C-XyO">
+                    <rect key="frame" x="315.5" y="31.5" width="90.5" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" name="SubFontColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Sell" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cwB-kU-yUQ">
+                    <rect key="frame" x="217" y="31.5" width="90.5" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" name="SubFontColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sY7-BH-rPv">
+                    <rect key="frame" x="118.5" y="31.5" width="90.5" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" name="SubFontColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" name="CustomControlColor"/>
+            <constraints>
+                <constraint firstItem="sY7-BH-rPv" firstAttribute="leading" secondItem="K2a-kq-yQZ" secondAttribute="trailing" constant="8" id="0mE-M5-4NZ"/>
+                <constraint firstAttribute="trailing" secondItem="1ah-8C-XyO" secondAttribute="trailing" constant="8" id="3PG-ad-gMu"/>
+                <constraint firstItem="sY7-BH-rPv" firstAttribute="width" secondItem="K2a-kq-yQZ" secondAttribute="width" id="8Ke-s3-FQn"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="K2a-kq-yQZ" secondAttribute="bottom" constant="8" id="DOr-Dm-APo"/>
+                <constraint firstItem="cwB-kU-yUQ" firstAttribute="width" secondItem="K2a-kq-yQZ" secondAttribute="width" id="HGb-lA-6zB"/>
+                <constraint firstItem="1ah-8C-XyO" firstAttribute="width" secondItem="K2a-kq-yQZ" secondAttribute="width" id="akX-Wg-a40"/>
+                <constraint firstItem="K2a-kq-yQZ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="b3B-qa-rMF"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="sY7-BH-rPv" secondAttribute="bottom" constant="8" id="c9M-es-6oE"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="cwB-kU-yUQ" secondAttribute="bottom" constant="8" id="dZ6-HV-HcJ"/>
+                <constraint firstItem="1ah-8C-XyO" firstAttribute="leading" secondItem="cwB-kU-yUQ" secondAttribute="trailing" constant="8" id="gdL-Yq-bdE"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="1ah-8C-XyO" secondAttribute="bottom" constant="8" id="hAi-dC-ixm"/>
+                <constraint firstItem="cwB-kU-yUQ" firstAttribute="leading" secondItem="sY7-BH-rPv" secondAttribute="trailing" constant="8" id="qaG-GF-Mu2"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="137.68115942028987" y="-111.83035714285714"/>
         </view>
     </objects>
+    <resources>
+        <namedColor name="CustomControlColor">
+            <color red="0.066666666666666666" green="0.11372549019607843" blue="0.10196078431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="SubFontColor">
+            <color red="0.46666666666666667" green="0.58431372549019611" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

@@ -43,7 +43,7 @@ class CurrencyTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Download from forex")
         
         viewModel.requestData()
-        viewModel.currencyRates.subscribe { (currencyRates) in
+        viewModel.currencyRatesPublishSubject.subscribe { (currencyRates) in
             print(currencyRates)
             expectation.fulfill()
         }
@@ -55,7 +55,7 @@ class CurrencyTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Download from forex")
         
         viewModel.requestDatas(params: ["USDHKD", "USDJPY"])
-        viewModel.currencyRates.subscribe { (currencyRates) in
+        viewModel.currencyRatesPublishSubject.subscribe { (currencyRates) in
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 10.0)
