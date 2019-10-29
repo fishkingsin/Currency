@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import RxSwift
 import RxCocoa
+import CoreData
 
 class CurrencyViewController: UIViewController, UITableViewDelegate {
     
@@ -21,25 +22,38 @@ class CurrencyViewController: UIViewController, UITableViewDelegate {
     
     public var currencyRatesPublishSubject = PublishSubject<[CurrencyRate]>()
     public var interval = PublishSubject<Int>()
+    public var loading = PublishSubject<Bool>()
     
     lazy var viewModel : CurrencyViewModel = {
         let viewModel = CurrencyViewModel()
         return viewModel
     }()
     
+    var indicator = UIActivityIndicatorView()
+    
+    var managedObjectContext: NSManagedObjectContext!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor( named:"CustomControlColor")
         self.tableView.backgroundColor = UIColor( named:"CustomControlColor")
+        self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.singleLine
+        self.tableView.separatorColor = UIColor(named: "SubFontColor")
+
         self.tableView.delegate = self
-        
-        
+        self.managedObjectContext = shareLazyCoreDataUtils.managedObjectContext
         setupBinding()
-        self.viewModel.requestData()
-        
-        
-        
+        self.activityIndicator()
     }
+    
+    func activityIndicator() {
+        indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        indicator.style = UIActivityIndicatorView.Style.medium
+        indicator.center = self.view.center
+        self.view.addSubview(indicator)
+    }
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -57,8 +71,11 @@ class CurrencyViewController: UIViewController, UITableViewDelegate {
         self.viewModel.cancelRequest()
     }
     
-    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         self.viewModel.resumeInterval()
+        let range = NSMakeRange(self.tableView.indexPathsForVisibleRows!.first!.row,
+                                self.tableView.indexPathsForVisibleRows!.last!.row)
+        self.viewModel.updateData(range: range)
     }
     
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
@@ -72,32 +89,55 @@ class CurrencyViewController: UIViewController, UITableViewDelegate {
             cell.currencyRate = currencyRate
         }.disposed(by: disposeBag)
         
-        viewModel
-        .currencyRatesPublishSubject
-        .observeOn(MainScheduler.instance)
-            .bind(to: self.currencyRatesPublishSubject)
-        .disposed(by: disposeBag)
+        self.managedObjectContext.rx.entities(CurrencyRate.self, predicate: nil, sortDescriptors: nil).subscribe(onNext: { currencyRates in
+            if (currencyRates.count == 0) {
+                self.viewModel.requestData()
+            }
+        }).disposed(by: disposeBag)
         
         viewModel
-        .interval
-        .observeOn(MainScheduler.instance)
+                   .interval
+                   .observeOn(MainScheduler.instance)
             .bind(to: self.interval)
+                   .disposed(by: disposeBag)
+        
+        self.managedObjectContext.rx.entities(CurrencyRate.self, predicate: nil, sortDescriptors: nil)
+            .bind(to: self.currencyRatesPublishSubject)
+            .disposed(by: disposeBag)
+        
+        
+        viewModel
+        .loading
+        .observeOn(MainScheduler.instance)
+        .bind(to: self.loading)
+        .disposed(by: disposeBag)
+        
+        self
+        .loading
+        .observeOn(MainScheduler.instance)
+            .subscribe({ event in
+                if (event.element!) {
+                    self.indicator.startAnimating()
+                } else {
+                    self.indicator.stopAnimating()
+                }
+            })
         .disposed(by: disposeBag)
         
         
-        self.currencyRatesPublishSubject.subscribe{ (event) in
-            
-            let pair:[String] = (event.element?.compactMap({ currencyRate -> String in
-                return currencyRate.currencyIso
-            }))!
-
-            let range = NSMakeRange(self.tableView.indexPathsForVisibleRows!.startIndex, self.tableView.indexPathsForVisibleRows!.count)
-            let p = self.subArray(array: pair, range: range)
-            print("\(p)")
-//            self.viewModel.requestDatas(params: p)
-            
         
-        }.disposed(by: disposeBag)
+        viewModel.interval
+            .observeOn(MainScheduler.instance)
+            .subscribe { i in
+                let range = NSMakeRange(self.tableView.indexPathsForVisibleRows!.first!.row,
+                                        self.tableView.indexPathsForVisibleRows!.last!.row)
+//                print(" self.interval \(i)")
+//                print("range \(range)")
+//                print("self.tableView.indexPathsForVisibleRows \(self.tableView.indexPathsForVisibleRows!)")
+//                print("self.tableView.indexPathsForVisibleRows!.first!.row \()")
+//                print("self.tableView.indexPathsForVisibleRows!.last \(self.tableView.indexPathsForVisibleRows!.last!)")
+                self.viewModel.updateData(range: range)
+        }
     }
     
     func subArray<T>(array: [T], range: NSRange) -> [T] {
@@ -106,4 +146,5 @@ class CurrencyViewController: UIViewController, UITableViewDelegate {
       }
       return Array(array[range.location..<min(range.length, array.count)])
     }
+    
 }

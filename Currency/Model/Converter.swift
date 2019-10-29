@@ -18,21 +18,24 @@ struct Converter {
 
 extension Converter {
     
-    static func parseObject(dictionary: [String : AnyObject]) -> Result<CurrencyRate, Error> {
+    static func parseObject(dictionary: [String : AnyObject], previous: [CurrencyRate]) -> Result<CurrencyRate, Error> {
         print("dic \(dictionary)")
         let rates = dictionary["rates"] as? [String: Any]
         
         if let keys = rates?.keys {
             if let key = keys.first {
                 let rateObject = rates![key] as? [String: Any]
-                print("rates[key] \(String(describing: rateObject![key]))")
-                let rate = rateObject?["rate"] as! Double
-                let currencyRate = CurrencyRate(currencyIso: key , rate: rate, change: 0, sellPrice: rate * 0.9, buyPrice: rate * 1.1)
+                // mock new rate changed
+                let rate = rateObject?["rate"] as! Double * Double.random(in: 0.9 ..< 1.1)
+                
+                let prev = previous.filter { $0.currencyIso == key }
+                let change = prev.first!.rate == 0 ? 0 : (prev.first!.rate - rate) / prev.first!.rate
+                let currencyRate = CurrencyRate(currencyIso: key , rate: rate, change: change , sellPrice: rate * Double.random(in: 0.9 ..< 0.9999), buyPrice: rate * Double.random(in: 1.000001 ..< 1.1))
                 return .success(currencyRate)
                 
             }
         }
-        return .failure(NSError(domain: "currencyRate", code: 0, userInfo: nil))
+        return .failure(NSError(domain: "CurrencyRate", code: 0, userInfo: nil))
     }
     
 }

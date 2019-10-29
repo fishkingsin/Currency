@@ -13,25 +13,25 @@ import Reachability
 
 
 class CurrencyTests: XCTestCase {
-
+    
     var viewModel: CurrencyViewModel!
-
+    
     
     override func setUp() {
         super.setUp()
         viewModel = CurrencyViewModel()
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
-
+    
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
+    
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
-
+    
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {
@@ -56,10 +56,45 @@ class CurrencyTests: XCTestCase {
         
         viewModel.requestDatas(params: ["USDHKD", "USDJPY"])
         viewModel.currencyRatesPublishSubject.subscribe { (currencyRates) in
+            XCTAssertNotNil(currencyRates)
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 10.0)
     }
+    
+    
+    func testConverterShouldThrowError () {
+        let dic = ["rates": nil, "code": 200]
+        let result = Converter.parseObject(dictionary: dic as [String : AnyObject], previous: [])
+        switch(result) {
+        case .failure(let error):
+            print(error)
+            XCTAssertNotNil(error)
+            break
+            
+        case .success(_):
+            break
+        }
+    }
+    
+    func testViewModelMethod () {
+        let expectation = XCTestExpectation(description: "Fetch from coredata")
+        viewModel.managedObjectContext.rx.entities(CurrencyRate.self, predicate: nil, sortDescriptors: nil)
+            .subscribe(onNext: { currenctRates in
+                XCTAssertNotNil(currenctRates)
+                expectation.fulfill()
+            }, onError: {error in
+                
+            }, onCompleted: {
+                
+            }){
+                
+        }
+        
+        wait(for: [expectation], timeout: 10.0)
+    }
+    
+    
     
     
     

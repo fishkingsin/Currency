@@ -17,29 +17,45 @@ class CurrencyCell: UITableViewCell {
             if let currencyIso = currencyRate?.currencyIso {
                 brandLabel.text = "\(currencyIso): Forex"
             }
-            if let rate = currencyRate?.rate {
-                if rate == 0 {
+            if let change = currencyRate?.change {
+                if change.isEqual(to: 0) {
+                    changeLabel.textColor = UIColor.gray
                     changeLabel.text = "--"
+                    changeIcon.text = ""
+                } else {
+                    if change > 0 {
+                        changeIcon.textColor = UIColor.green
+                        changeLabel.textColor = UIColor.green
+                        changeIcon.text = "⋀"
+                    } else {
+                        changeIcon.textColor = UIColor.red
+                        changeLabel.textColor = UIColor.red
+                        changeIcon.text = "⋁"
+                    }
+                    
+                    
+                    changeLabel.text = "\(String(format:"%.3f", abs(change))) %"
                 }
-                changeLabel.text = String(format:"%.3f", rate)
             } else {
                 changeLabel.text = "--"
             }
             
             if let sellPrice = currencyRate?.sellPrice {
-                if sellPrice == 0 {
+                if sellPrice.isEqual(to: 0) {
                     sellPriceLabel.text = "--"
+                } else {
+                    sellPriceLabel.text = String(format:"%.3f", sellPrice)
                 }
-                sellPriceLabel.text = String(format:"%.3f", sellPrice)
             } else {
                 sellPriceLabel.text = "--"
             }
             
             if let buyPrice = currencyRate?.buyPrice {
-                if buyPrice == 0 {
+                if buyPrice.isEqual(to: 0) {
                     buyPriceLabel.text = "--"
+                } else {
+                    buyPriceLabel.text = String(format:"%.3f", buyPrice)
                 }
-                buyPriceLabel.text = String(format:"%.3f", buyPrice)
             } else {
                 buyPriceLabel.text = "--"
             }
@@ -65,6 +81,14 @@ class CurrencyCell: UITableViewCell {
         lbl.textAlignment = .left
         return lbl
     }()
+    
+    private let changeIcon : UILabel = {
+           let lbl = UILabel()
+           lbl.textColor = UIColor(named: "FontColor")
+           lbl.font = UIFont.boldSystemFont(ofSize: 12)
+           lbl.textAlignment = .left
+           return lbl
+       }()
     
     
     private let brandLabel : UILabel = {
@@ -104,6 +128,7 @@ class CurrencyCell: UITableViewCell {
             super.init(style: style, reuseIdentifier: reuseIdentifier)
             self.backgroundColor = UIColor.clear
             addSubview(currencyIsoLabel)
+            addSubview(changeIcon)
             addSubview(brandLabel)
             addSubview(changeLabel)
             addSubview(buyPriceLabel)
@@ -112,12 +137,14 @@ class CurrencyCell: UITableViewCell {
             let views: [String: Any] = [
                 "superview": self,
                 "currencyIsoLabel": currencyIsoLabel,
+                "changeIcon": changeIcon,
                 "brandLabel": brandLabel,
                 "changeLabel": changeLabel,
                 "sellPriceLabel": sellPriceLabel,
                 "buyPriceLabel": buyPriceLabel,
             ]
             currencyIsoLabel.translatesAutoresizingMaskIntoConstraints = false
+            changeIcon.translatesAutoresizingMaskIntoConstraints = false
             brandLabel.translatesAutoresizingMaskIntoConstraints = false
             changeLabel.translatesAutoresizingMaskIntoConstraints = false
             sellPriceLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -135,7 +162,7 @@ class CurrencyCell: UITableViewCell {
             
             // 2
             let currencyIsoLabelHorizontalConstraints = NSLayoutConstraint.constraints(
-                withVisualFormat: "H:|-leftMargin-[currencyIsoLabel(>=currentIosViewWidth)]-8-[changeLabel(==currencyIsoLabel)]-8-[sellPriceLabel(==currencyIsoLabel)]-8-[buyPriceLabel(==currencyIsoLabel)]-rightMargin-|",
+                withVisualFormat: "H:|-leftMargin-[currencyIsoLabel(>=currentIosViewWidth)]-[changeIcon(8)]-8-[changeLabel(==currencyIsoLabel)]-8-[sellPriceLabel(==currencyIsoLabel)]-8-[buyPriceLabel(==currencyIsoLabel)]-rightMargin-|",
                 options: [.alignAllCenterY],
                 metrics: metrics,
                 views: views)

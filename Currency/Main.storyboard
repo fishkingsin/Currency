@@ -100,7 +100,7 @@
             </objects>
             <point key="canvasLocation" x="-2125" y="705"/>
         </scene>
-        <!--Market-->
+        <!--Markets-->
         <scene sceneID="heM-TG-X7t">
             <objects>
                 <viewController id="tvC-vE-3Zt" customClass="CurrencyViewController" customModule="Currency" customModuleProvider="target" sceneMemberID="viewController">
@@ -230,7 +230,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3Ds-ku-KrM"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Market" id="opw-16-Obb">
+                    <navigationItem key="navigationItem" title="Markets" id="opw-16-Obb">
                         <barButtonItem key="rightBarButtonItem" image="magnifyingglass" catalog="system" id="Efi-C7-LHI">
                             <color key="tintColor" name="SubFontColor"/>
                         </barButtonItem>

@@ -7,6 +7,10 @@
 //
 
 import Foundation
+import CoreData
+import RxDataSources
+import RxCoreData
+
 struct CurrencyRate:Codable {
     
     let currencyIso : String
@@ -14,7 +18,6 @@ struct CurrencyRate:Codable {
     let change: Double
     let sellPrice: Double
     let buyPrice: Double
-    
     enum CodingKeys: String, CodingKey {
         case currencyIso
         case rate
@@ -24,12 +27,3 @@ struct CurrencyRate:Codable {
     }
 }
 
-
-// MARK: Convenience initializers
-
-extension CurrencyRate {
-    init?(data: Data) {
-        guard let me = try? JSONDecoder().decode(CurrencyRate.self, from: data) else { return nil }
-        self = me
-    }
-}

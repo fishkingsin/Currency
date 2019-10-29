@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.9.0)
+  - Differentiator (4.0.1)
   - ObjectMapper (3.5.1)
   - OCMock (3.4.3)
   - ReachabilitySwift (4.3.1)
@@ -14,6 +15,10 @@ PODS:
     - RxRelay (~> 5)
     - RxSwift (~> 5)
   - RxCoreData (1.0.0):
+    - RxCocoa (~> 5.0)
+    - RxSwift (~> 5.0)
+  - RxDataSources (4.0.1):
+    - Differentiator (~> 4.0)
     - RxCocoa (~> 5.0)
     - RxSwift (~> 5.0)
   - RxReachability (1.0.0):
@@ -34,6 +39,7 @@ DEPENDENCIES:
   - RxBlocking
   - RxCocoa
   - RxCoreData
+  - RxDataSources
   - RxReachability
   - RxSwift
   - RxTest
@@ -42,6 +48,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - Differentiator
     - ObjectMapper
     - OCMock
     - ReachabilitySwift
@@ -49,6 +56,7 @@ SPEC REPOS:
     - RxBlocking
     - RxCocoa
     - RxCoreData
+    - RxDataSources
     - RxReachability
     - RxRelay
     - RxSwift
@@ -57,6 +65,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: afc3e7c6db61476cb45cdd23fed06bad03bbc321
+  Differentiator: 886080237d9f87f322641dedbc5be257061b0602
   ObjectMapper: 70187b8941977c62ccfb423caf6b50be405cabf0
   OCMock: 43565190abc78977ad44a61c0d20d7f0784d35ab
   ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
@@ -64,12 +73,13 @@ SPEC CHECKSUMS:
   RxBlocking: c67185d26498ea3cbe3e121917c3c16739e43123
   RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
   RxCoreData: 1ed5f83e80facccc90fc054eb7f39a44177de56a
+  RxDataSources: efee07fa4de48477eca0a4611e6d11e2da9c1114
   RxReachability: 21d3e96f39bc166a21c357e923f47dec148ca97b
   RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
   RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
   RxTest: 4349afe98f564e0a9bc19063368904622d17d49a
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 78c06c2980fd15112a62ae7a07fe4fe0eb65fee9
+PODFILE CHECKSUM: 4f082984a555fbbf17a2b2234afe9a193010655f
 
 COCOAPODS: 1.8.4
