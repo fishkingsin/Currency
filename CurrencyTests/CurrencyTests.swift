@@ -14,15 +14,12 @@ import Reachability
 
 class CurrencyTests: XCTestCase {
 
-    var dataSource: CurrencyDataSource!
     var viewModel: CurrencyViewModel!
 
     
     override func setUp() {
         super.setUp()
-        dataSource = CurrencyDataSource()
-               
-        viewModel = CurrencyViewModel(dataSource: dataSource)
+        viewModel = CurrencyViewModel()
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
@@ -45,10 +42,11 @@ class CurrencyTests: XCTestCase {
     func testAPIManagerGetData () {
         let expectation = XCTestExpectation(description: "Download from forex")
         
-        APIManager.requestData(url:"", method: .get, parameters: nil, completion: { (result) in
-            XCTAssertNotNil(result, "No data was downloaded.")
+        viewModel.requestData()
+        viewModel.currencyRates.subscribe { (currencyRates) in
+            print(currencyRates)
             expectation.fulfill()
-        })
+        }
         wait(for: [expectation], timeout: 10.0)
     }
     

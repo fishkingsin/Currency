@@ -15,14 +15,35 @@ class CurrencyCell: UITableViewCell {
         didSet {
             currencyIsoLabel.text = currencyRate?.currencyIso
             if let currencyIso = currencyRate?.currencyIso {
-                brandLabel.text = "\(currencyIso): Foprex"
+                brandLabel.text = "\(currencyIso): Forex"
             }
-//            if let rate = currencyRate?.rate {
-//                brandLabel.text = String(format:"%.3f", rate)
-//            }
-            changeLabel.text = "0.006"
-            sellPriceLabel.text = "112.951"
-            buyPriceLabel.text = "113.964"
+            if let rate = currencyRate?.rate {
+                if rate == 0 {
+                    changeLabel.text = "--"
+                }
+                changeLabel.text = String(format:"%.3f", rate)
+            } else {
+                changeLabel.text = "--"
+            }
+            
+            if let sellPrice = currencyRate?.sellPrice {
+                if sellPrice == 0 {
+                    sellPriceLabel.text = "--"
+                }
+                sellPriceLabel.text = String(format:"%.3f", sellPrice)
+            } else {
+                sellPriceLabel.text = "--"
+            }
+            
+            if let buyPrice = currencyRate?.buyPrice {
+                if buyPrice == 0 {
+                    buyPriceLabel.text = "--"
+                }
+                buyPriceLabel.text = String(format:"%.3f", buyPrice)
+            } else {
+                buyPriceLabel.text = "--"
+            }
+        
         }
     }
     private enum Metrics {
@@ -48,8 +69,8 @@ class CurrencyCell: UITableViewCell {
     
     private let brandLabel : UILabel = {
         let lbl = UILabel()
-        lbl.textColor = UIColor(named: "FontColor")
-        lbl.font = UIFont.systemFont(ofSize: 16)
+        lbl.textColor = UIColor.gray
+        lbl.font = UIFont.systemFont(ofSize: 12)
         lbl.textAlignment = .left
         return lbl
     }()
@@ -59,7 +80,7 @@ class CurrencyCell: UITableViewCell {
         let lbl = UILabel()
         lbl.textColor = UIColor(named: "FontColor")
         lbl.font = UIFont.systemFont(ofSize: 16)
-        lbl.textAlignment = .left
+        lbl.textAlignment = .center
         return lbl
     }()
     
@@ -67,7 +88,7 @@ class CurrencyCell: UITableViewCell {
         let lbl = UILabel()
         lbl.textColor = UIColor(named: "FontColor")
         lbl.font = UIFont.systemFont(ofSize: 16)
-        lbl.textAlignment = .left
+        lbl.textAlignment = .center
         return lbl
     }()
     
@@ -75,7 +96,7 @@ class CurrencyCell: UITableViewCell {
         let lbl = UILabel()
         lbl.textColor = UIColor(named: "FontColor")
         lbl.font = UIFont.systemFont(ofSize: 16)
-        lbl.textAlignment = .left
+        lbl.textAlignment = .center
         return lbl
     }()
     
@@ -114,7 +135,7 @@ class CurrencyCell: UITableViewCell {
             
             // 2
             let currencyIsoLabelHorizontalConstraints = NSLayoutConstraint.constraints(
-                withVisualFormat: "H:|-leftMargin-[currencyIsoLabel(>=currentIosViewWidth)]-16-[changeLabel]-[sellPriceLabel]-[buyPriceLabel]-rightMargin-|",
+                withVisualFormat: "H:|-leftMargin-[currencyIsoLabel(>=currentIosViewWidth)]-8-[changeLabel(==currencyIsoLabel)]-8-[sellPriceLabel(==currencyIsoLabel)]-8-[buyPriceLabel(==currencyIsoLabel)]-rightMargin-|",
                 options: [.alignAllCenterY],
                 metrics: metrics,
                 views: views)
