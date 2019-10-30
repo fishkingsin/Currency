@@ -51,26 +51,59 @@ class CurrencyViewModel {
         RxAlamofire.requestJSON(.get, "https://www.freeforexapi.com/api/live")
             //            .debug("requestData")
             .observeOn(MainScheduler.instance)
+            
+            .flatMap({ (r, data) -> Observable<[(HTTPURLResponse, Any)]> in
+                let dict = data as? [String: AnyObject]
+                let pairs = dict?["supportedPairs"] as! Array<String>
+                let collection = pairs.compactMap { RxAlamofire.requestJSON(.get, "https://www.freeforexapi.com/api/live?pairs=\($0)")}
+                return Observable.zip(collection)
+            })
+            .take(1)
             .subscribe(
-                onNext: {(r, data) in
-                    let dict = data as? [String: AnyObject]
-                    let pairs = dict?["supportedPairs"] as! Array<String>
-                    self.requestDatas(params: pairs)
-                    
-
-                    let currencyRates = pairs.filter{$0.contains("USD")}.compactMap {
-                        return CurrencyRate(currencyIso: $0, rate: 0, change: 0, sellPrice: 0, buyPrice: 0)
-                    }
-                    self.currencyRatesPublishSubject.onNext(currencyRates)
+                onNext: {responses in
+                    let currencyRates = responses.compactMap({ (arg0) -> CurrencyRate? in
+                        let (_, json) = arg0
+                        let result = Converter.parseObject(dictionary: json as! [String: AnyObject], previous: [])
+                        switch(result) {
+                        case .success(let currencyRate):
+                            return currencyRate
+                            break
+                        case .failure(_):
+                            return nil
+                            break
+                        }
+                    })
                     for currencyRate in currencyRates {
-                        _ = try? self.managedObjectContext.rx.update(currencyRate)
+                        do {
+                            _ = try? self.managedObjectContext.rx.update(currencyRate)
+                            
+                        } catch let e {
+                            print(e)
+                        }
                     }
-                    // save
                     do {
                         try self.managedObjectContext?.save()
                     } catch let e {
                         print(e)
                     }
+                    //                    let dict = data as? [String: AnyObject]
+                    //                    let pairs = dict?["supportedPairs"] as! Array<String>
+                    //                    self.requestDatas(params: pairs)
+                    //
+                    //
+                    //                    let currencyRates = pairs.filter{$0.contains("USD")}.compactMap {
+                    //                        return CurrencyRate(currencyIso: $0, rate: 0, change: 0, sellPrice: 0, buyPrice: 0)
+                    //                    }
+                    //                    self.currencyRatesPublishSubject.onNext(currencyRates)
+                    //                    for currencyRate in currencyRates {
+                    //                        _ = try? self.managedObjectContext.rx.update(currencyRate)
+                    //                    }
+                    //                    // save
+                    //                    do {
+                    //                        try self.managedObjectContext?.save()
+                    //                    } catch let e {
+                    //                        print(e)
+                    //                    }
                     
                     
             },
@@ -82,29 +115,37 @@ class CurrencyViewModel {
                     
                     
             }) {
-//                print("dispose")
+                //                print("dispose")
         }.disposed(by: disposeBag)
         
     }
     
     public func requestDatas(params: [String]){
         let collections = params.compactMap { RxAlamofire.requestJSON(.get, "https://www.freeforexapi.com/api/live?pairs=\($0)")}
-       
+        
         Observable.combineLatest(
             Observable.zip(collections),
             self.managedObjectContext.rx.entities(CurrencyRate.self, predicate: NSPredicate(format: "self.currencyIso in %@", params), sortDescriptors: nil))
             .observeOn(MainScheduler.instance)
             .take(1)
             .subscribe(onNext: { (responses, preCurrencyRates) in
-                print(responses)
+                
                 let currencyRates = responses.compactMap({ (arg0) -> CurrencyRate? in
-                    let (_, json) = arg0
+                    let (urlResponse, json) = arg0
                     
                     let result = Converter.parseObject(dictionary: json as! [String: AnyObject], previous: preCurrencyRates)
                     switch(result) {
                     case .success(let currencyRate):
                         return currencyRate
                     case .failure( _):
+                        if let key = urlResponse.url?.query?.split(separator: "=").last! {
+                            let currencyRate = CurrencyRate(currencyIso: String(key), rate: 0, change: 0, sellPrice: 0, buyPrice: 0)
+                            do {
+                                try? self.managedObjectContext.rx.delete(currencyRate)
+                            } catch {
+                                print(error)
+                            }
+                        }
                         return nil
                     }
                 })
@@ -123,7 +164,7 @@ class CurrencyViewModel {
             }, onCompleted: {
                 self.loading.onNext(false)
             })
-        .disposed(by: disposeBag)
+            .disposed(by: disposeBag)
     }
     
     public func cancelRequest () {
@@ -138,7 +179,7 @@ class CurrencyViewModel {
             //        .debug("interval")
             .subscribe({ event in
                 self.interval.on(event)
-//                self.interval.on(event)
+                //                self.interval.on(event)
             })
     }
     
@@ -150,7 +191,7 @@ class CurrencyViewModel {
                 let array1 = self.subArray(array: currencyRates, range: range).compactMap({ c -> String in
                     return c.currencyIso
                 })
-//                print("array1 \(array1)")
+                //                print("array1 \(array1)")
                 return array1
         }.subscribe(onNext: { params in
             self.requestDatas(params: params)
