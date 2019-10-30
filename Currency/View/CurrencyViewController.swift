@@ -43,7 +43,7 @@ class CurrencyViewController: UIViewController, UITableViewDelegate {
         self.tableView.backgroundColor = UIColor( named:"CustomControlColor")
         self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.singleLine
         self.tableView.separatorColor = UIColor(named: "SubFontColor")
-
+        
         self.tableView.delegate = self
         self.managedObjectContext = shareLazyCoreDataUtils.managedObjectContext
         setupBinding()
@@ -56,7 +56,7 @@ class CurrencyViewController: UIViewController, UITableViewDelegate {
         indicator.center = self.view.center
         self.view.addSubview(indicator)
     }
-
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -96,19 +96,22 @@ class CurrencyViewController: UIViewController, UITableViewDelegate {
             cell.currencyRate = currencyRate
         }.disposed(by: disposeBag)
         
-        self.managedObjectContext.rx.entities(CurrencyRate.self, predicate: nil, sortDescriptors: nil).subscribe(onNext: { currencyRates in
-            if (currencyRates.count == 0) {
-                self.viewModel.requestData()
-            }
-//            self.equityLabel.text = "$\(10000 * currencyRates.count)"
-            self.balanceLabel.text = "$\(10000.0f * currencyRates.count)"
-        }).disposed(by: disposeBag)
+        self.managedObjectContext.rx.entities(CurrencyRate.self, predicate: nil, sortDescriptors: nil)
+            .subscribe(onNext: { currencyRates in
+                if (currencyRates.count == 0) {
+                    self.viewModel.requestData()
+                }
+                //            self.equityLabel.text = "$\(10000 * currencyRates.count)"
+                self.balanceLabel.text = "$\(10000 * currencyRates.count)"
+                let sellPrices = currencyRates.compactMap{$0.sellPrice}.reduce(0, +)
+                self.equityLabel.text = "$\(String(format: "%.2f", sellPrices))"
+            }).disposed(by: disposeBag)
         
         viewModel
-                   .interval
-                   .observeOn(MainScheduler.instance)
+            .interval
+            .observeOn(MainScheduler.instance)
             .bind(to: self.interval)
-                   .disposed(by: disposeBag)
+            .disposed(by: disposeBag)
         
         self.managedObjectContext.rx.entities(CurrencyRate.self, predicate: nil, sortDescriptors: nil)
             .bind(to: self.currencyRatesPublishSubject)
@@ -116,14 +119,14 @@ class CurrencyViewController: UIViewController, UITableViewDelegate {
         
         
         viewModel
-        .loading
-        .observeOn(MainScheduler.instance)
-        .bind(to: self.loading)
-        .disposed(by: disposeBag)
+            .loading
+            .observeOn(MainScheduler.instance)
+            .bind(to: self.loading)
+            .disposed(by: disposeBag)
         
         self
-        .loading
-        .observeOn(MainScheduler.instance)
+            .loading
+            .observeOn(MainScheduler.instance)
             .subscribe({ event in
                 if (event.element!) {
                     self.indicator.startAnimating()
@@ -131,7 +134,7 @@ class CurrencyViewController: UIViewController, UITableViewDelegate {
                     self.indicator.stopAnimating()
                 }
             })
-        .disposed(by: disposeBag)
+            .disposed(by: disposeBag)
         
         
         
@@ -142,7 +145,7 @@ class CurrencyViewController: UIViewController, UITableViewDelegate {
                     if indexPathsForVisibleRows.count > 0 {
                         let range = NSMakeRange(indexPathsForVisibleRows.first!.row,
                                                 indexPathsForVisibleRows.last!.row)
-
+                        
                         self.viewModel.updateData(range: range)
                     }
                 }
@@ -150,10 +153,10 @@ class CurrencyViewController: UIViewController, UITableViewDelegate {
     }
     
     func subArray<T>(array: [T], range: NSRange) -> [T] {
-      if range.location > array.count {
-        return []
-      }
-      return Array(array[range.location..<min(range.length, array.count)])
+        if range.location > array.count {
+            return []
+        }
+        return Array(array[range.location..<min(range.length, array.count)])
     }
     
 }

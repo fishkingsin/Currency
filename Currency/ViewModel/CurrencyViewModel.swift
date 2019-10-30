@@ -96,7 +96,7 @@ class CurrencyViewModel {
             .observeOn(MainScheduler.instance)
             .take(1)
             .subscribe(onNext: { (responses, preCurrencyRates) in
-                
+                print(responses)
                 let currencyRates = responses.compactMap({ (arg0) -> CurrencyRate? in
                     let (_, json) = arg0
                     

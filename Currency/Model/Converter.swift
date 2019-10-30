@@ -9,10 +9,10 @@
 import Foundation
 import RxSwift
 struct Converter {
-
+    
     let base : String
     let date : String
-
+    
     let rates : [CurrencyRate]
 }
 
@@ -40,7 +40,7 @@ extension Converter {
                 
             }
         }
-        return .failure(NSError(domain: "CurrencyRate", code: 0, userInfo: []))
+        return .failure(NSError(domain: "CurrencyRate", code: 0, userInfo: nil))
     }
     
 }
