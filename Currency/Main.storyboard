@@ -236,6 +236,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="balanceLabel" destination="4GT-ah-o0o" id="xqn-Zc-Qpx"/>
+                        <outlet property="equityLabel" destination="tO6-fx-UM7" id="g3i-iH-gRd"/>
                         <outlet property="tableView" destination="ZHJ-gL-O5T" id="big-KQ-h0P"/>
                     </connections>
                 </viewController>

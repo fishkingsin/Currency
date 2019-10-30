@@ -29,13 +29,18 @@ extension Converter {
                 let rate = rateObject?["rate"] as! Double * Double.random(in: 0.9 ..< 1.1)
                 
                 let prev = previous.filter { $0.currencyIso == key }
-                let change = prev.first!.rate == 0 ? 0 : (prev.first!.rate - rate) / prev.first!.rate
-                let currencyRate = CurrencyRate(currencyIso: key , rate: rate, change: change , sellPrice: rate * Double.random(in: 0.9 ..< 0.9999), buyPrice: rate * Double.random(in: 1.000001 ..< 1.1))
-                return .success(currencyRate)
+                if (prev.count == 0) {
+                    let currencyRate = CurrencyRate(currencyIso: key , rate: rate, change: 0 , sellPrice: rate * Double.random(in: 0.9 ..< 0.9999), buyPrice: rate * Double.random(in: 1.000001 ..< 1.1))
+                    return .success(currencyRate)
+                } else {
+                    let change = prev.first!.rate == 0 ? 0 : (prev.first!.rate - rate) / prev.first!.rate
+                    let currencyRate = CurrencyRate(currencyIso: key , rate: prev.first!.rate == 0 ? rate : prev.first!.rate, change: change , sellPrice: rate * Double.random(in: 0.9 ..< 0.9999), buyPrice: rate * Double.random(in: 1.000001 ..< 1.1))
+                    return .success(currencyRate)
+                }
                 
             }
         }
-        return .failure(NSError(domain: "CurrencyRate", code: 0, userInfo: nil))
+        return .failure(NSError(domain: "CurrencyRate", code: 0, userInfo: []))
     }
     
 }

@@ -16,8 +16,11 @@ class CurrencyViewController: UIViewController, UITableViewDelegate {
     
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var equityLabel: UILabel!
+    @IBOutlet weak var balanceLabel: UILabel!
     private let disposeBag = DisposeBag()
     let cellId = "CurrencyCell"
+    
     var currencyRates:[CurrencyRate] = [CurrencyRate]()
     
     public var currencyRatesPublishSubject = PublishSubject<[CurrencyRate]>()
@@ -73,9 +76,13 @@ class CurrencyViewController: UIViewController, UITableViewDelegate {
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         self.viewModel.resumeInterval()
-        let range = NSMakeRange(self.tableView.indexPathsForVisibleRows!.first!.row,
-                                self.tableView.indexPathsForVisibleRows!.last!.row)
-        self.viewModel.updateData(range: range)
+        if let indexPathsForVisibleRows = self.tableView.indexPathsForVisibleRows {
+            if indexPathsForVisibleRows.count > 0 {
+                let range = NSMakeRange(indexPathsForVisibleRows.first!.row,
+                                        indexPathsForVisibleRows.last!.row)
+                self.viewModel.updateData(range: range)
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
@@ -93,6 +100,8 @@ class CurrencyViewController: UIViewController, UITableViewDelegate {
             if (currencyRates.count == 0) {
                 self.viewModel.requestData()
             }
+//            self.equityLabel.text = "$\(10000 * currencyRates.count)"
+            self.balanceLabel.text = "$\(10000.0f * currencyRates.count)"
         }).disposed(by: disposeBag)
         
         viewModel
@@ -129,14 +138,14 @@ class CurrencyViewController: UIViewController, UITableViewDelegate {
         viewModel.interval
             .observeOn(MainScheduler.instance)
             .subscribe { i in
-                let range = NSMakeRange(self.tableView.indexPathsForVisibleRows!.first!.row,
-                                        self.tableView.indexPathsForVisibleRows!.last!.row)
-//                print(" self.interval \(i)")
-//                print("range \(range)")
-//                print("self.tableView.indexPathsForVisibleRows \(self.tableView.indexPathsForVisibleRows!)")
-//                print("self.tableView.indexPathsForVisibleRows!.first!.row \()")
-//                print("self.tableView.indexPathsForVisibleRows!.last \(self.tableView.indexPathsForVisibleRows!.last!)")
-                self.viewModel.updateData(range: range)
+                if let indexPathsForVisibleRows = self.tableView.indexPathsForVisibleRows {
+                    if indexPathsForVisibleRows.count > 0 {
+                        let range = NSMakeRange(indexPathsForVisibleRows.first!.row,
+                                                indexPathsForVisibleRows.last!.row)
+
+                        self.viewModel.updateData(range: range)
+                    }
+                }
         }
     }
     

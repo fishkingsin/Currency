@@ -58,7 +58,7 @@ class CurrencyViewModel {
                     self.requestDatas(params: pairs)
                     
 
-                    let currencyRates = pairs.compactMap {
+                    let currencyRates = pairs.filter{$0.contains("USD")}.compactMap {
                         return CurrencyRate(currencyIso: $0, rate: 0, change: 0, sellPrice: 0, buyPrice: 0)
                     }
                     self.currencyRatesPublishSubject.onNext(currencyRates)
