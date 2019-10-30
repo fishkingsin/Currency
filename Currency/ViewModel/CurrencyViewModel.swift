@@ -205,7 +205,7 @@ class CurrencyViewModel {
         
     }
     
-    func subArray<T>(array: [T], range: NSRange) -> [T] {
+    public func subArray<T>(array: [T], range: NSRange) -> [T] {
         if range.location > array.count {
             return []
         }

@@ -94,7 +94,13 @@ class CurrencyTests: XCTestCase {
         wait(for: [expectation], timeout: 10.0)
     }
     
-    
+    func testSubArrayMethod () {
+        let array = [1,2,3,4,5,6,7,8,9,10,11]
+        let range = NSMakeRange(5, array.count)
+        
+        let expect = [6,7,8,9,10,11]
+        XCTAssertEqual(viewModel.subArray(array: array, range:range), expect)
+    }
     
     
     
