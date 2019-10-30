@@ -102,8 +102,14 @@ class CurrencyViewController: UIViewController, UITableViewDelegate {
                     self.viewModel.requestData()
                 }
                 //            self.equityLabel.text = "$\(10000 * currencyRates.count)"
+                // hardcode
                 self.balanceLabel.text = "$\(10000 * currencyRates.count)"
-                let sellPrices = currencyRates.compactMap{$0.sellPrice}.reduce(0, +)
+                let sellPrices = currencyRates.compactMap{ currencyRate -> Double in
+                    let sellPrice = currencyRate.sellPrice
+                    // hardcode
+                    let equity = 10000 * currencyRate.rate / sellPrice
+                    return equity
+                }.reduce(0, +)
                 self.equityLabel.text = "$\(String(format: "%.2f", sellPrices))"
             }).disposed(by: disposeBag)
         
@@ -140,13 +146,13 @@ class CurrencyViewController: UIViewController, UITableViewDelegate {
         
         viewModel.interval
             .observeOn(MainScheduler.instance)
-            .subscribe { i in
+            .subscribe { _ in
                 if let indexPathsForVisibleRows = self.tableView.indexPathsForVisibleRows {
-                    print("indexPathsForVisibleRows \(indexPathsForVisibleRows)")
+//                    print("indexPathsForVisibleRows \(indexPathsForVisibleRows)")
                     if indexPathsForVisibleRows.count > 0 {
                         let range = NSMakeRange(indexPathsForVisibleRows.first!.row,
                                                 indexPathsForVisibleRows.last!.row + 1)
-                        print("range \(range)")
+//                        print("range \(range)")
                         self.viewModel.updateData(range: range)
                     }
                 }

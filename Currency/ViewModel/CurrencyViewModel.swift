@@ -55,7 +55,7 @@ class CurrencyViewModel {
             .flatMap({ (r, data) -> Observable<[(HTTPURLResponse, Any)]> in
                 let dict = data as? [String: AnyObject]
                 let pairs = dict?["supportedPairs"] as! Array<String>
-                let collection = pairs.compactMap { RxAlamofire.requestJSON(.get, "https://www.freeforexapi.com/api/live?pairs=\($0)")}
+                let collection = pairs.filter{$0.contains("USD")}.compactMap { RxAlamofire.requestJSON(.get, "https://www.freeforexapi.com/api/live?pairs=\($0)")}
                 return Observable.zip(collection)
             })
             .take(1)
@@ -67,18 +67,13 @@ class CurrencyViewModel {
                         switch(result) {
                         case .success(let currencyRate):
                             return currencyRate
-                            break
                         case .failure(_):
                             return nil
-                            break
                         }
                     })
                     for currencyRate in currencyRates {
                         do {
                             _ = try? self.managedObjectContext.rx.update(currencyRate)
-                            
-                        } catch let e {
-                            print(e)
                         }
                     }
                     do {
