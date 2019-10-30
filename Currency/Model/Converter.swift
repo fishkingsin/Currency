@@ -19,7 +19,7 @@ struct Converter {
 extension Converter {
     
     static func parseObject(dictionary: [String : AnyObject], previous: [CurrencyRate]) -> Result<CurrencyRate, Error> {
-        print("dic \(dictionary)")
+//        print("dic \(dictionary)")
         let rates = dictionary["rates"] as? [String: Any]
         
         if let keys = rates?.keys {

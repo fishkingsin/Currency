@@ -79,7 +79,7 @@ class CurrencyViewController: UIViewController, UITableViewDelegate {
         if let indexPathsForVisibleRows = self.tableView.indexPathsForVisibleRows {
             if indexPathsForVisibleRows.count > 0 {
                 let range = NSMakeRange(indexPathsForVisibleRows.first!.row,
-                                        indexPathsForVisibleRows.last!.row)
+                                        indexPathsForVisibleRows.last!.row + 1)
                 self.viewModel.updateData(range: range)
             }
         }
@@ -142,21 +142,15 @@ class CurrencyViewController: UIViewController, UITableViewDelegate {
             .observeOn(MainScheduler.instance)
             .subscribe { i in
                 if let indexPathsForVisibleRows = self.tableView.indexPathsForVisibleRows {
+                    print("indexPathsForVisibleRows \(indexPathsForVisibleRows)")
                     if indexPathsForVisibleRows.count > 0 {
                         let range = NSMakeRange(indexPathsForVisibleRows.first!.row,
-                                                indexPathsForVisibleRows.last!.row)
-                        
+                                                indexPathsForVisibleRows.last!.row + 1)
+                        print("range \(range)")
                         self.viewModel.updateData(range: range)
                     }
                 }
         }
-    }
-    
-    func subArray<T>(array: [T], range: NSRange) -> [T] {
-        if range.location > array.count {
-            return []
-        }
-        return Array(array[range.location..<min(range.length, array.count)])
     }
     
 }
